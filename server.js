@@ -29,8 +29,6 @@ async function generateTeaser() {
         // Save the unique teaser to the database
         await collection.create({ Teaser: teaser });
 
-        console.log(teaser);
-
         return teaser;
         
     } catch (error) {
@@ -38,13 +36,11 @@ async function generateTeaser() {
     }
 }
 
-
-
 const tweet = async () => {
     try {
         let response = await generateTeaser();
         console.log(response);
-     // await twitterClient.v2.tweet(generatedTeaser);
+        await twitterClient.v2.tweet(response);
     } catch (e) {
         console.log(e)
     }
