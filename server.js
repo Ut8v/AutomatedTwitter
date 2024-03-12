@@ -57,7 +57,7 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/tweet', (req, res)=>{
-       // tweet();
+        tweet();
         res.send("Success");
 })
 
