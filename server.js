@@ -1,8 +1,13 @@
+const express = require ('express');
 require('dotenv').config();
 const { OpenAI } = require('openai');
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const collection = require('./mongodb')
 const twitterClient = require('./twitter')
+
+const app = express();
+
+
 
 //function to generate a teaser.
 async function generateTeaser() {
@@ -46,5 +51,13 @@ const tweet = async () => {
     }
     }
 
-tweet();
+
+app.get('/tweet', (req, res)=>{
+        tweet();
+        res.send("Success");
+})
+
+app.listen(3000,()=>{
+    console.log("server is running")
+})
 
