@@ -4,6 +4,7 @@ const { OpenAI } = require('openai');
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const collection = require('./mongodb')
 const twitterClient = require('./twitter')
+const path = require('path');
 
 const app = express();
 
@@ -51,9 +52,12 @@ const tweet = async () => {
     }
     }
 
+app.get('/', (req, res)=>{
+    res.sendFile(path.join(__dirname,'mainpage.html'));
+})
 
 app.get('/tweet', (req, res)=>{
-        tweet();
+       // tweet();
         res.send("Success");
 })
 
